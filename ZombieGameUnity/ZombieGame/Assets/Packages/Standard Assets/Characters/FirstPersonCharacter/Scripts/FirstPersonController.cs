@@ -27,6 +27,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [SerializeField] private AudioClip[] m_FootstepSounds;    // an array of footstep sounds that will be randomly selected from.
         [SerializeField] private AudioClip m_JumpSound;           // the sound played when character leaves the ground.
         [SerializeField] private AudioClip m_LandSound;           // the sound played when character touches back on ground.
+        [SerializeField] private AudioClip m_PistolFireSound;           // the sound played when character fires gun.
+        [SerializeField] private AudioClip m_PistolReloadSound;           // the sound played when character reloads gun
 
         private Camera m_Camera;
         private bool m_Jump;
@@ -108,6 +110,15 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_MoveDir.x = desiredMove.x*speed;
             m_MoveDir.z = desiredMove.z*speed;
 
+            if(Input.GetMouseButtonDown(0))
+            {
+                PlayPistolFireSound();
+            }
+
+            if(Input.GetKeyDown("r"))
+            {
+                PlayPistolReloadSound();
+            }
 
             if (m_CharacterController.isGrounded)
             {
@@ -137,6 +148,18 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private void PlayJumpSound()
         {
             m_AudioSource.clip = m_JumpSound;
+            m_AudioSource.Play();
+        }
+
+        private void PlayPistolFireSound()
+        {
+            m_AudioSource.clip = m_PistolFireSound;
+            m_AudioSource.Play();
+        }
+
+        private void PlayPistolReloadSound()
+        {
+            m_AudioSource.clip = m_PistolReloadSound;
             m_AudioSource.Play();
         }
 
