@@ -34,15 +34,15 @@ public class Shooting : MonoBehaviour {
                 }
             }
             clipCount--;
-            if(clipCount == -1)
+            if(clipCount == 0)
             {
-                clipCount = 0;
+                Reload();
             }
             inClip.text = clipCount.ToString();
             ammoLeft.text = ammoCount.ToString();           
         }
 
-        if (Input.GetKeyDown("r") && ammoCount > 0)
+        if (Input.GetKeyDown("r") && ammoCount > 0 && clipCount != 8)
         {
             Reload();
         }
@@ -51,22 +51,21 @@ public class Shooting : MonoBehaviour {
 
     void Reload()
     {
-        //if (clipCount > 0 && ammoCount > 0)
-        //{
-        //    clipCount = 8;
-        //    ammoCount = ammoCount - clipCount;
-        //    if (ammoCount < 0)
-        //    {
-        //        ammoCount = 0;
-        //        clipCount = 0;
-        //    }
-        //}
-        //clipCount--;
-        //if (clipCount == -1)
-        //{
-        //    clipCount = 0;
-        //}
-        //inClip.text = clipCount.ToString();
-        //ammoLeft.text = ammoCount.ToString();
+        if (clipCount >= 0  && clipCount < 8 && ammoCount > 0)
+        {
+            ammoCount = ammoCount - (8 - clipCount);
+            clipCount = 8;
+            if (ammoCount < 0)
+            {
+                clipCount = clipCount + ammoCount;
+                ammoCount = 0;
+            }
+        }
+        if (clipCount == -1)
+        {
+            clipCount = 0;
+        }
+        inClip.text = clipCount.ToString();
+        ammoLeft.text = ammoCount.ToString();
     }
 }

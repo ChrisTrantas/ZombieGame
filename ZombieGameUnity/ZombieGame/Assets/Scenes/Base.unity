@@ -841,8 +841,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 150a56a254b4a304d960be9075e4519e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inClip: {fileID: 0}
-  ammoLeft: {fileID: 0}
+  inClip: {fileID: 1580959862}
+  ammoLeft: {fileID: 335083205}
   clipCount: 0
   ammoCount: 0
 --- !u!1 &1496259359
